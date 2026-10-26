@@ -10,12 +10,17 @@
   --main-content-color: rgba(var(--main-rgb), var(--main-content-opacity));
   --sidebar-color: rgba(var(--main-rgb), var(--sidebar-opacity));
   /* ACCENT HSL AND TEXT COLOR SETTINGS */
-  --accent-hue: 142;
-  --accent-saturation: 70%;
-  --accent-lightness: 55%;
+  /* Sampled blue was rgb(50,116,172) = hsl(207,55%,44%). Lightness nudged up slightly so it
+     stays vivid on the dark glass panels; white text keeps button/tooltip contrast above 4.5:1. */
+  --accent-hue: 207;
+  --accent-saturation: 62%;
+  --accent-lightness: 47%;
   --accent-hsl: var(--accent-hue),calc(var(--accent-saturation) * var(--saturation-factor)),var(--accent-lightness);
+  /* Lighter tint of the accent, used for accent-colored TEXT/links on dark backgrounds */
+  --accent-light-lightness: 68%;
+  --accent-light-hsl: var(--accent-hue),calc(var(--accent-saturation) * var(--saturation-factor)),var(--accent-light-lightness);
   --accent-opacity: 0.8;
-  --accent-text-color: hsl(0,0%,0%);
+  --accent-text-color: hsl(0,0%,100%);
   --accent-secondary-color: hsl(from hsl(var(--accent-hsl)) h calc(s * 0.6) calc(l * 0.2) / calc(var(--accent-opacity) * 0.5));
   --accent-secondary-text-color: hsl(0,0%,94%);
   /* ALERT HSL AND TEXT COLOR SETTINGS */
@@ -29,11 +34,11 @@
   /* MENTION HSL COLOR SETTINGS */
   --mention-hue: var(--accent-hue);
   --mention-saturation: var(--accent-saturation);
-  --mention-lightness: var(--accent-lightness);
+  --mention-lightness: var(--accent-light-lightness);
   --mention-hsl: var(--mention-hue),calc(var(--mention-saturation) * var(--saturation-factor)),var(--mention-lightness);
   --mention-opacity: 1;
   /* REPLY HSL COLOR SETTINGS */
-  --reply-hue: 170;
+  --reply-hue: 190;
   --reply-saturation: 79%;
   --reply-lightness: 64%;
   --reply-hsl: var(--reply-hue),calc(var(--reply-saturation) * var(--saturation-factor)),var(--reply-lightness);
@@ -155,9 +160,9 @@
     --background-modifier-selected: hsl(0,0%,100%,0.125);
     --background-modifier-accent: hsl(0,0%,100%,0.175);
     --background-primary: transparent;
-    /* ACCENT COLORED TEXT AND LINK SETTINGS */
-    --text-brand: hsl(var(--accent-hsl));
-    --text-link: hsl(var(--accent-hsl));
+    /* ACCENT COLORED TEXT AND LINK SETTINGS (lighter tint for readability on dark) */
+    --text-brand: hsl(var(--accent-light-hsl));
+    --text-link: hsl(var(--accent-light-hsl));
   }
 }
 /*
@@ -509,7 +514,7 @@ body,
 }
 
 .button_fc8177 {
-  color: hsl(var(--accent-hsl));
+  color: hsl(var(--accent-light-hsl));
 }
 
 .role_b4b2c3 {
@@ -912,7 +917,7 @@ body,
 }
 
 .mentionButton__841c8 {
-  --text-link: hsl(var(--accent-hsl));
+  --text-link: hsl(var(--accent-light-hsl));
 }
 
 .threadSuggestionBar__841c8 {
@@ -920,11 +925,11 @@ body,
 }
 
 .colorLink__201d5, .colorLink_c9946a {
-  color: hsl(var(--accent-hsl));
+  color: hsl(var(--accent-light-hsl));
 }
 
 .fakeLink_ada32f {
-  color: hsl(var(--accent-hsl));
+  color: hsl(var(--accent-light-hsl));
 }
 
 .before_inlineCode_ada32f,
@@ -1213,10 +1218,10 @@ body,
   --button-shadow: none !important;
 }
 .bd-button-link:after {
-  --button-action-color: hsl(var(--accent-hsl--material-you));
+  --button-action-color: hsl(var(--accent-light-hsl));
 }
 .bd-button-link.bd-button-color-brand, .bd-button-link.bd-button-color-primary {
-  --button-text-color: hsl(var(--accent-hsl--material-you));
+  --button-text-color: hsl(var(--accent-light-hsl));
 }
 
 /*
@@ -1699,7 +1704,7 @@ body,
   background-color: hsl(var(--accent-hsl), 0.4) !important;
 }
 .pill_a2c9e8.selected_a2c9e8 .lineClamp1__92431 {
-  color: hsl(var(--accent-hsl));
+  color: hsl(var(--accent-light-hsl));
 }
 
 /*
@@ -2101,11 +2106,11 @@ body,
 
 .lookLink__201d5 {
   --button-background: var(--liquid-glass-color-subtle);
-  --button-text-color: hsl(var(--accent-hsl),var(--accent-opacity));
+  --button-text-color: hsl(var(--accent-light-hsl));
   --button-action-color: transparent;
 }
 .lookLink__201d5:hover .contents__201d5 {
-  background-image: linear-gradient(0deg, transparent, transparent 1px, hsl(var(--accent-hsl)) 0, hsl(var(--accent-hsl)) 2px, transparent 0) !important;
+  background-image: linear-gradient(0deg, transparent, transparent 1px, hsl(var(--accent-light-hsl)) 0, hsl(var(--accent-light-hsl)) 2px, transparent 0) !important;
 }
 
 /* BUTTONS -> CALL BUTTONS */
@@ -2991,7 +2996,7 @@ body,
 }
 
 .cta__9271d {
-  color: hsl(var(--accent-hsl));
+  color: hsl(var(--accent-light-hsl));
 }
 
 .wrapper_d5f3cd,
@@ -3344,7 +3349,7 @@ body,
   background-color: hsla(var(--accent-hsl), 0.4);
 }
 .reaction__23977.reactionMe__23977 .reactionCount__23977 {
-  color: hsla(var(--accent-hsl), var(--accent-opacity));
+  color: hsla(var(--accent-light-hsl), var(--accent-opacity));
 }
 .reaction__23977 .burstGlow__23977 {
   border-radius: var(--message-radius);
@@ -3386,7 +3391,7 @@ body,
   --interactive-normal: #aaa;
 }
 .container__23ba6 .lookBlank__201d5 {
-  color: hsl(var(--accent-hsl));
+  color: hsl(var(--accent-light-hsl));
 }
 .container__23ba6 .wrapper__72c38 {
   background-color: transparent;
@@ -3491,7 +3496,7 @@ body,
 }
 
 .eventStatusBrand__08773 {
-  color: hsl(var(--accent-hsl));
+  color: hsl(var(--accent-light-hsl));
 }
 
 .card__88264 {
@@ -5109,7 +5114,7 @@ body,
   background-color: var(--background-modifier-hover);
 }
 .popout__76f04 .more__76f04 {
-  color: hsl(var(--accent-hsl));
+  color: hsl(var(--accent-light-hsl));
 }
 
 /*
@@ -6337,7 +6342,7 @@ body,
 }
 
 .comboNameplate__257af .comboMultiplier__257af {
-  color: hsl(var(--accent-hsl)) !important;
+  color: hsl(var(--accent-light-hsl)) !important;
 }
 
 .progressBar-1T6LYX {
